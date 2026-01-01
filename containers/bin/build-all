@@ -7,4 +7,4 @@
 #   Build a Kafka base image.
 #
 
-for name in 4.0.0; do bin/build --base-image-tag=$name; done;
+for name in 4.0.0 4.0.1 4.1.0 4.1.1; do bin/build --base-image-tag=$name; done;

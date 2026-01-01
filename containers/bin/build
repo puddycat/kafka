@@ -88,6 +88,7 @@ build_docker_image ()
 			--platform $BUILDX_PLATFORMS	\
 			--build-arg BASE_IMAGE="$BASE_IMAGE" \
 			--build-arg BASE_IMAGE_TAG="$BASE_IMAGE_TAG" \
+			--build-arg KAFKA_VERSION="$DOCKER_IMAGE_TAG"	\
 			-t "$DST_IMAGE"	\
 			-f "$DOCKERFILE"	\
 			--push	\
@@ -169,12 +170,14 @@ main ()
 				BUILD_HOME_DIR		"/home/build"
 				BUILD_UID			"1001"
 
-				BASE_IMAGE          "kafka"
-				BASE_IMAGE_TAG	    "4.0.0"
+				KAFKA_VERSION		"4.0.0"
+
+				BASE_IMAGE          "apache/kafka"
+				BASE_IMAGE_TAG	    "\$KAFKA_VERSION"
 
 				DOCKER_IMAGE_PREFIX	"raymondstrose/"
 				DOCKER_IMAGE_NAME	"kafka"
-				DOCKER_IMAGE_TAG	"\$BASE_IMAGE_TAG"
+				DOCKER_IMAGE_TAG	"\$KAFKA_VERSION"
 				DOCKER_SCAN			false
 				DOCKER_IMAGE_PUSH	false
 				EOF
@@ -216,6 +219,7 @@ main ()
 			--base-image-tag=?*)	BASE_IMAGE_TAG="${1#--base-image-tag=}";;
 			esac;
 
+			KAFKA_VERSION="$BASE_IMAGE_TAG";
 			DOCKER_IMAGE_TAG="$BASE_IMAGE_TAG";;
 
 		--image-name|--image-name=?*)
