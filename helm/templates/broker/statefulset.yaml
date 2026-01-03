@@ -205,6 +205,15 @@ spec:
               mountPath: {{ .Values.broker.persistence.mountPath }}
             - name: logs
               mountPath: {{ .Values.broker.logPersistence.mountPath }}
+
+{{- /*
+            - name: empty-dir
+              mountPath: /opt/kafka/config
+              subPath: kafka.config
+*/}}
+            - name: kafka-config
+              mountPath: /opt/kafka/config
+
             - name: kafka-config
               mountPath: /opt/kafka/config/server.properties
               subPath: server.properties

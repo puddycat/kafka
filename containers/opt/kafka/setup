@@ -15,6 +15,9 @@ set -o pipefail
 # Load Kafka environment variables
 . /opt/lib/environment
 
+# FIXME: For development/debugging
+set -x
+
 # Map Kafka environment variables
 kafka_create_alias_environment_variables
 

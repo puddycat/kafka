@@ -221,6 +221,8 @@ spec:
               mountPath: /opt/kafka/config
               subPath: kafka.config
 */}}
+            - name: kafka-config
+              mountPath: /opt/kafka/config
 
             - name: kafka-config
               mountPath: /opt/kafka/config/server.properties
