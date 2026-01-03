@@ -215,8 +215,15 @@ spec:
               mountPath: {{ .Values.controller.persistence.mountPath }}
             - name: logs
               mountPath: {{ .Values.controller.logPersistence.mountPath }}
+
+{{- /*
+            - name: empty-dir
+              mountPath: /opt/kafka/config
+              subPath: kafka.config
+*/}}
+
             - name: kafka-config
-              mountPath: /opt/bitnami/kafka/config/server.properties
+              mountPath: /opt/kafka/config/server.properties
               subPath: server.properties
             - name: tmp
               mountPath: /tmp
@@ -224,17 +231,17 @@ spec:
               mountPath: /shared
             {{- if or .Values.log4j2 .Values.existingLog4j2ConfigMap }}
             - name: log4j2-config
-              mountPath: /opt/bitnami/kafka/config/log4j2.yaml
+              mountPath: /opt/kafka/config/log4j2.yaml
               subPath: log4j2.yaml
             {{- end }}
             {{- if include "kafka.sslEnabled" . }}
             - name: kafka-shared-certs
-              mountPath: /opt/bitnami/kafka/config/certs
+              mountPath: /opt/kafka/config/certs
               readOnly: true
             {{- end }}
             {{- if and .Values.usePasswordFiles (include "kafka.saslEnabled" .) }}
             - name: kafka-sasl
-              mountPath: /opt/bitnami/kafka/config/secrets
+              mountPath: /opt/kafka/config/secrets
               readOnly: true
             {{- end }}
             {{- if .Values.extraVolumeMounts }}

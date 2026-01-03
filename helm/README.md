@@ -338,7 +338,7 @@ extraDeploy:
                   containerPort: 8083
               volumeMounts:
                 - name: configuration
-                  mountPath: /bitnami/kafka/config
+                  mountPath: /kafka/config
           volumes:
             - name: configuration
               configMap:
@@ -378,10 +378,10 @@ You can create the Kafka Connect image using the Dockerfile below:
 ```Dockerfile
 FROM bitnami/kafka:latest
 # Download MongoDB&reg; Connector for Apache Kafka https://www.confluent.io/hub/mongodb/kafka-connect-mongodb
-RUN mkdir -p /opt/bitnami/kafka/plugins && \
-    cd /opt/bitnami/kafka/plugins && \
+RUN mkdir -p /opt/kafka/plugins && \
+    cd /opt/kafka/plugins && \
     curl --remote-name --location --silent https://search.maven.org/remotecontent?filepath=org/mongodb/kafka/mongo-kafka-connect/1.2.0/mongo-kafka-connect-1.2.0-all.jar
-CMD /opt/bitnami/kafka/bin/connect-standalone.sh /bitnami/kafka/config/connect-standalone.properties /bitnami/kafka/config/mongo.properties
+CMD /opt/kafka/bin/connect-standalone.sh /kafka/config/connect-standalone.properties /kafka/config/mongo.properties
 ```
 
 ### Persistence

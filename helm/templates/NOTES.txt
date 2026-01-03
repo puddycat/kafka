@@ -18,7 +18,7 @@ Access the pod you want to debug by executing
 
 In order to replicate the container startup scripts execute this command:
 
-    /opt/bitnami/scripts/kafka/entrypoint.sh /opt/bitnami/scripts/kafka/run.sh
+    /opt/kafka/entrypoint /opt/kafka/run
 
 {{- else }}
 
@@ -185,7 +185,7 @@ To connect to your Kafka controller+broker nodes from outside the cluster, follo
 
         2. Obtain pod configuration:
 
-        kubectl exec -it KAFKA_POD -- cat /opt/bitnami/kafka/config/server.properties | grep advertised.listeners
+        kubectl exec -it KAFKA_POD -- cat /opt/kafka/config/server.properties | grep advertised.listeners
 
     {{- end }}
     Kafka brokers port: You will have a different node port for each Kafka broker. You can get the list of configured node ports using the command below:
@@ -228,7 +228,7 @@ To connect to your Kafka broker nodes from outside the cluster, follow these ins
 
         2. Obtain pod configuration:
 
-        kubectl exec -it KAFKA_POD -- cat /opt/bitnami/kafka/config/server.properties | grep advertised.listeners
+        kubectl exec -it KAFKA_POD -- cat /opt/kafka/config/server.properties | grep advertised.listeners
 
     {{- end }}
     Kafka brokers port: You will have a different node port for each Kafka broker. You can get the list of configured node ports using the command below:
