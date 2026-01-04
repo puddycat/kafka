@@ -19,6 +19,7 @@ print_welcome_page;
 
 if [[ "$*" = *"/opt/kafka/run"* || "$*" = *"/run.sh"* ]]; then
     info "** Starting Kafka setup **";
+    info "PATH=$PATH";
     /opt/kafka/setup;
     info "** Kafka setup finished! **";
 fi;
