@@ -23,8 +23,8 @@ ARG	KAFKA_VERSION
 ENV APP_VERSION="${KAFKA_VERSION}" \
     BITNAMI_APP_NAME="kafka" \
     IMAGE_REVISION="2" \
-    JAVA_HOME="/opt/bitnami/java" \
-    PATH="/opt/bitnami/java/bin:/opt/bitnami/kafka/bin:$PATH"
+    JAVA_HOME="/opt/java" \
+    PATH="/opt/java/bin:/opt/kafka/bin:$PATH"
 
 COPY opt /opt
 
