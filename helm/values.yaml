@@ -99,8 +99,8 @@ image:
   ## Specify a imagePullPolicy
   ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
   ##
-  #pullPolicy: Always
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
+  #pullPolicy: IfNotPresent
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -710,10 +710,14 @@ controller:
   heapOpts: -XX:InitialRAMPercentage=75 -XX:MaxRAMPercentage=75
   ## @param controller.command Override Kafka container command
   ##
-  command: []
+  #command: []
+  #command: [ "/bin/bash" ]
+  command: [ "/opt/kafka/entrypoint" ]
   ## @param controller.args Override Kafka container arguments
   ##
-  args: []
+  #args: []
+  #args: [ "-x", "/etc/kafka/docker/run" ]
+  args: [ "/opt/kafka/run" ]
   ## @param controller.extraEnvVars Extra environment variables to add to Kafka pods
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/kafka#configuration
   ## e.g:
